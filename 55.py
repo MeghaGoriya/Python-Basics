@@ -3,16 +3,14 @@ import math
 from collections import defaultdict
 firstline= True
 data_list=[]
-ddict = {}
+
 llist = []
-month_quantity=[]
+month_wise={}
+
 with open('data.csv','r',newline='') as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
         data_list.append(row)
-Quantity1_list=[]
-Quantity2_list=[]
-Quantity3_list=[]
 for index,row in enumerate(data_list):
     if index==0:
         columns=row
@@ -21,21 +19,25 @@ for index,row in enumerate(data_list):
         month = int(row[0].split('-')[1])
         quantity = int(row[3])
 
-        months = range(1, 13)
-        for month in range(1,13):
-            if row[1] == "Hot Chocolate Fudge":
-                ddict[month] = llist
-                llist.append(quantity)
+        # months = range(1, 13)
+        if month in range(1,13):
+            if month in month_wise:
+                if row[1] == "Hot Chocolate Fudge":
+                    month_wise[month] = llist
+                    llist.append(quantity)
+                else:
+                    pass
             else:
                 pass
-
+                # if row[1] == "Hot Chocolate Fudge":
+                #     month_wise[month] = llist
+                #     llist.append(quantity)
         else:
-            ddict[month]=month
+            pass
 
-
-print(ddict[3])
-print(ddict[1])
-print(ddict[2])
+print(month_wise[1])
+print(month_wise[2])
+print(month_wise[3])
 
 
 
